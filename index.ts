@@ -22,6 +22,12 @@ import beforeAfterSlidersElement from "./elements/BeforeAfterSliders";
 import eBoxElement from "./elements/eBox";
 import eBoxsElement from "./elements/eBoxs";
 import beforeAfterBoxElement from "./elements/BeforeAfterBox";
+import introductionElement from "./elements/introduction";
+import testimonialSliderEmblaElement from "./elements/testimonialSliderEmbla";
+import professionalTeamElement from "./elements/professionalTeam";
+import partnerBannerElement from "./elements/partnerBanner";
+import simplifyWorkflowElement from "./elements/simplifyWorkflow";
+import beforeAfterTabElement from "./elements/BeforeAfterTab";
 
 export const PLUGINS: PluginMeta = {
     nx:          "com.system.ephotovn",
@@ -54,6 +60,12 @@ export function register() {
     addBuilderElement(eBoxElement, PLUGINS.nx);
     addBuilderElement(eBoxsElement, PLUGINS.nx);
     addBuilderElement(beforeAfterBoxElement, PLUGINS.nx);
+    addBuilderElement(introductionElement, PLUGINS.nx);
+    addBuilderElement(testimonialSliderEmblaElement, PLUGINS.nx);
+    addBuilderElement(professionalTeamElement, PLUGINS.nx);
+    addBuilderElement(partnerBannerElement, PLUGINS.nx);
+    addBuilderElement(simplifyWorkflowElement, PLUGINS.nx);
+    addBuilderElement(beforeAfterTabElement, PLUGINS.nx);
 }
 
 

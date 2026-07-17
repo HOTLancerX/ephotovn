@@ -132,7 +132,7 @@ function EBoxFrontend({ element }: { element: any }) {
       `}</style>
 
       <div
-        className="flex flex-col lg:flex-row w-full items-stretch"
+        className="flex flex-col lg:flex-row w-full items-center"
         style={{
           gap: `${columnGap}px`,
           flexDirection: contentPosition === "right" ? "row-reverse" : "row",

@@ -453,7 +453,7 @@ const beforeAfterBoxElement = {
   type: "before-after-box",
   category: "ephotovn",
   label: "Before After Box",
-  icon: "solar:slider-minimalistic-horizontal-bold-duotone",
+  icon: "/plugin/ephotovn/icon/el.png",
 
   schema: {
     content: {
