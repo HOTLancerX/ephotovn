@@ -18,6 +18,10 @@ import beforeAfterTabssElement from "./elements/BeforeAfterTabs";
 import exploreResourcesElement from "./elements/ExploreResources";
 import testimonialSliderElement from "./elements/TestimonialSlider";
 import featuresGridElement from "./elements/FeaturesGrid";
+import beforeAfterSlidersElement from "./elements/BeforeAfterSliders";
+import eBoxElement from "./elements/eBox";
+import eBoxsElement from "./elements/eBoxs";
+import beforeAfterBoxElement from "./elements/BeforeAfterBox";
 
 export const PLUGINS: PluginMeta = {
     nx:          "com.system.ephotovn",
@@ -46,6 +50,10 @@ export function register() {
     addBuilderElement(exploreResourcesElement, PLUGINS.nx);
     addBuilderElement(testimonialSliderElement, PLUGINS.nx);
     addBuilderElement(featuresGridElement, PLUGINS.nx);
+    addBuilderElement(beforeAfterSlidersElement, PLUGINS.nx);
+    addBuilderElement(eBoxElement, PLUGINS.nx);
+    addBuilderElement(eBoxsElement, PLUGINS.nx);
+    addBuilderElement(beforeAfterBoxElement, PLUGINS.nx);
 }
 
 

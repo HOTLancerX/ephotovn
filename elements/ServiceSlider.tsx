@@ -406,7 +406,7 @@ const serviceSliderElement = {
   type: "service-slider",
   category: "ephotovn",
   label: "Service Slider",
-  icon: "solar:slider-bold-duotone",
+  icon: "mynaui:grid",
 
   schema: {
     content: {
