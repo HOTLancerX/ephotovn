@@ -145,7 +145,7 @@ function PartnerBannerFrontend({ element }: { element: any }) {
             {listItems.map((item, idx) => (
               <div key={idx} className="flex items-center gap-4">
                 <div className="p-1 shrink-0" style={{ color: listIconColor }}>
-                  <Icon icon={item.icon || "solar:add-linear"} width={listIconSize} className="stroke-[3]" />
+                  <Icon icon={item.icon || "solar:add-linear"} width={listIconSize} className="stroke-3" />
                 </div>
                 <p 
                   className="text-sm leading-relaxed text-gray-600"
