@@ -340,7 +340,7 @@ const sliderTextElement = {
   type: "slider-text-ep",
   category: "ephotovn",
   label: "Text Slider",
-  icon: "solar:slider-minimalistic-horizontal-bold-duotone",
+  icon: "/plugin/ephotovn/icon/ass.png",
 
   schema: {
     content: {

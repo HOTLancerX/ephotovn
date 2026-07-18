@@ -41,14 +41,9 @@ function IntroductionFrontend({ element }: { element: any }) {
   const descTyp = getTypographyStyles(s.style?.descTypography || {});
 
   return (
-    <div 
-      className="flex flex-col md:flex-row gap-8 items-center"
-      style={{
-        flexDirection: layoutPosition === "right" ? "row-reverse" : "row"
-      }}
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       {/* Text Side (normally Left Side: Icon image + text) */}
-      <div className="flex-1 flex flex-col items-start space-y-6">
+      <div className={`flex flex-col items-start space-y-6 ${layoutPosition === "right" ? "order-2" : "order-1"}`}>
         {showImage && imageLeft && (
           <div className="w-16 h-16 flex items-center justify-center rounded-xl overflow-hidden shadow-xs">
             <img
@@ -73,7 +68,7 @@ function IntroductionFrontend({ element }: { element: any }) {
       </div>
 
       {/* Showcase Image Side (normally Right Side) */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className={`flex items-center justify-center ${layoutPosition === "right" ? "order-1" : "order-2"}`}>
         {imageRight && (
           <img
             src={imageRight}

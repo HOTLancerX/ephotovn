@@ -378,7 +378,7 @@ const faqSectionElement = {
     },
 
     style: {
-      gap: 48,
+      gap: { desktop: 48, tablet: 48, mobile: 48 },
       contentGap: 24,
 
       // Subtitle

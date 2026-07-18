@@ -443,7 +443,7 @@ const serviceSliderElement = {
 
     style: {
       gap: 30,
-      headerGap: 40,
+      headerGap: { desktop: 40, tablet: 40, mobile: 40 },
       slideWidthMobile: 100,
       slideWidthDesktop: 33.33,
 

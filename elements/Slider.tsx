@@ -28,6 +28,24 @@ function getTypographyStyles(value: any) {
   return styles;
 }
 
+function resolveResponsiveValue(val: any, fallback: number): number {
+  if (val === undefined || val === null) return fallback;
+  if (typeof val === "number") return val;
+  if (typeof val === "string") {
+    const num = parseInt(val, 10);
+    return isNaN(num) ? fallback : num;
+  }
+  if (typeof val === "object") {
+    const res = val.desktop ?? val.tablet ?? val.mobile ?? val.value;
+    if (res !== undefined && res !== null) {
+      if (typeof res === "number") return res;
+      const num = parseInt(res, 10);
+      return isNaN(num) ? fallback : num;
+    }
+  }
+  return fallback;
+}
+
 function getDimensionsStyles(obj: any, property: "margin" | "padding") {
   if (!obj || typeof obj !== "object") return {};
   const u = obj.unit || "px";
@@ -97,9 +115,18 @@ function SliderFrontend({ element }: { element: any }) {
 
   // Configuration values
   const speed: number = s.style?.speed ?? 30; // Seconds for full cycle
-  const slideWidth: number = s.style?.slideWidth ?? 280;
-  const slideHeight: number = s.style?.slideHeight ?? 380;
-  const gap: number = s.style?.gap ?? 24;
+
+  const slideWidthDesktop = resolveResponsiveValue(s.style?.slideWidth?.desktop ?? s.style?.slideWidth, 280);
+  const slideWidthTablet = resolveResponsiveValue(s.style?.slideWidth?.tablet ?? s.style?.slideWidth, 280);
+  const slideWidthMobile = resolveResponsiveValue(s.style?.slideWidth?.mobile ?? s.style?.slideWidth, 280);
+
+  const slideHeightDesktop = resolveResponsiveValue(s.style?.slideHeight?.desktop ?? s.style?.slideHeight, 380);
+  const slideHeightTablet = resolveResponsiveValue(s.style?.slideHeight?.tablet ?? s.style?.slideHeight, 380);
+  const slideHeightMobile = resolveResponsiveValue(s.style?.slideHeight?.mobile ?? s.style?.slideHeight, 380);
+
+  const gapDesktop = resolveResponsiveValue(s.style?.gap?.desktop ?? s.style?.gap, 24);
+  const gapTablet = resolveResponsiveValue(s.style?.gap?.tablet ?? s.style?.gap, 24);
+  const gapMobile = resolveResponsiveValue(s.style?.gap?.mobile ?? s.style?.gap, 24);
 
   const quoteColor: string = s.style?.quoteColor || "#ffffff";
   const nameColor: string = s.style?.nameColor || "#1f2937";
@@ -149,54 +176,40 @@ function SliderFrontend({ element }: { element: any }) {
         .${elementId} .marquee-container:hover {
           animation-play-state: paused;
         }
+
+        /* Responsive CSS Variables on Root */
+        .${elementId} {
+          --slide-width: ${slideWidthDesktop}px;
+          --slide-gap: ${gapDesktop}px;
+          --slide-height: ${slideHeightDesktop}px;
+          --gap-half: ${gapDesktop / 2}px;
+        }
+        @media (max-width: 767px) {
+          .${elementId} {
+            --slide-width: ${slideWidthMobile}px;
+            --slide-gap: ${gapMobile}px;
+            --slide-height: ${slideHeightMobile}px;
+            --gap-half: ${gapMobile / 2}px;
+          }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .${elementId} {
+            --slide-width: ${slideWidthTablet}px;
+            --slide-gap: ${gapTablet}px;
+            --slide-height: ${slideHeightTablet}px;
+            --gap-half: ${gapTablet / 2}px;
+          }
+        }
+
         .${elementId} .slide-item {
-          flex: 0 0 ${slideWidth}px;
-          width: ${slideWidth}px;
-          margin-right: ${gap}px;
+          flex: 0 0 var(--slide-width);
+          width: var(--slide-width);
+          margin-right: var(--slide-gap);
           position: relative;
         }
         .${elementId} .slide-card {
           width: 100%;
-          height: ${slideHeight}px;
-          border-radius: 16px;
-          overflow: hidden;
-          position: relative;
-          cursor: pointer;
-        }
-        .${elementId} .slide-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-        .${elementId} .slide-overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.65);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 24px;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
-          text-align: center;
-        }
-        /* Hover effect on desktop */
-        @media (hover: hover) {
-          .${elementId} .slide-card:hover .slide-overlay {
-            opacity: 1;
-            pointer-events: auto;
-          }
-          .${elementId} .slide-card:hover .slide-image {
-            transform: scale(1.05);
-          }
-        }
-        /* Mobile version still image fallback */
-        @media (hover: none) {
-          .${elementId} .slide-overlay {
-            opacity: 0;
-          }
+          height: var(--slide-height);
         }
         
         @keyframes marquee-anim {
@@ -204,7 +217,7 @@ function SliderFrontend({ element }: { element: any }) {
             transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translate3d(calc(-50% - ${gap / 2}px), 0, 0);
+            transform: translate3d(calc(-50% - var(--gap-half, ${gapDesktop / 2}px)), 0, 0);
           }
         }
       `}</style>
@@ -237,14 +250,14 @@ function SliderFrontend({ element }: { element: any }) {
               )}
 
               {/* Main Card Image */}
-              <div className="slide-card shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="slide-card shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden cursor-pointer rounded-2xl group">
                 <img
                   src={slide.image}
                   alt={slide.name}
-                  className="slide-image"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="slide-overlay">
+                <div className="absolute inset-0 bg-black/65 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto text-center">
                   <p
                     className="italic leading-relaxed font-light text-sm"
                     style={{
@@ -292,14 +305,14 @@ const sliderElement = {
   type: "slider-ep",
   category: "ephotovn",
   label: "Slider",
-  icon: "solar:slider-minimalistic-horizontal-bold-duotone",
+  icon: "/plugin/ephotovn/icon/slider.png",
 
   schema: {
     style: {
       speed: 30,
-      slideWidth: 280,
-      slideHeight: 380,
-      gap: 24,
+      slideWidth: { desktop: 280, tablet: 280, mobile: 280 },
+      slideHeight: { desktop: 380, tablet: 380, mobile: 380 },
+      gap: { desktop: 24, tablet: 24, mobile: 24 },
       quoteColor: "#ffffff",
       nameColor: "#1f2937",
       locationColor: "#6b7280",

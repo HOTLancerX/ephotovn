@@ -375,9 +375,9 @@ const exploreResourcesElement = {
 
     style: {
       columns: 3,
-      gap: 32,
-      headerGap: 40,
-      cardGap: 14,
+      gap: { desktop: 32, tablet: 32, mobile: 32 },
+      headerGap: { desktop: 40, tablet: 40, mobile: 40 },
+      cardGap: { desktop: 14, tablet: 14, mobile: 14 },
 
       // Heading
       headingColor: "#111827",

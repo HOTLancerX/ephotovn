@@ -48,15 +48,10 @@ function SimplifyWorkflowFrontend({ element }: { element: any }) {
   const descTyp = getTypographyStyles(s.style?.descTypography || {});
 
   return (
-    <div className="w-full py-16 px-6 bg-transparent select-none">
-      <div 
-        className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center"
-        style={{
-          flexDirection: layoutPosition === "right" ? "row-reverse" : "row"
-        }}
-      >
+    <div className="w-full select-none">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Side: Main Showcase Image */}
-        <div className="flex-1 w-full flex items-center justify-center">
+        <div className={`w-full flex items-center justify-center ${layoutPosition === "right" ? "order-2" : "order-1"}`}>
           {image && (
             <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100">
               <img 
@@ -69,7 +64,7 @@ function SimplifyWorkflowFrontend({ element }: { element: any }) {
         </div>
 
         {/* Right Side: Text & Badge Information */}
-        <div className="flex-1 flex flex-col items-start space-y-6">
+        <div className={`flex flex-col items-start space-y-6 ${layoutPosition === "right" ? "order-1" : "order-2"}`}>
           {badgeText && (
             <span 
               className="inline-block px-3 py-1.5 text-xs font-bold rounded-md"

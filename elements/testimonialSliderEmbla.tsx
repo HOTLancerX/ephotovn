@@ -113,7 +113,7 @@ function TestimonialSliderFrontend({ element }: { element: any }) {
   const elementId = `testimonial-slider-el-${element.id}`;
 
   return (
-    <div className={`w-full py-16 px-6 ${elementId}`} style={{ backgroundColor: sectionBgColor }}>
+    <div className={`w-full ${elementId}`}>
       <style>{`
         .${elementId} .embla-slide-item {
           flex: 0 0 ${100 / mobileSlides}%;
@@ -130,11 +130,11 @@ function TestimonialSliderFrontend({ element }: { element: any }) {
           }
         }
       `}</style>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 md:gap-8 gap-2 items-stretch">
         
         {/* Left Column (Static Info Header) */}
         <div 
-          className="lg:col-span-4 flex flex-col justify-between p-6 rounded-2xl"
+          className="lg:col-span-4 flex flex-col justify-between md:p-6 rounded-2xl"
           style={{ backgroundColor: leftColBgColor }}
         >
           <div className="space-y-4">
@@ -187,7 +187,7 @@ function TestimonialSliderFrontend({ element }: { element: any }) {
 
         {/* Right Column (Embla Carousel Showcase) */}
         <div 
-          className="lg:col-span-8 p-6 rounded-2xl overflow-hidden"
+          className="lg:col-span-8 md:p-6 rounded-2xl overflow-hidden"
           style={{ backgroundColor: rightColBgColor }}
         >
           <div className="overflow-hidden" ref={emblaRef}>

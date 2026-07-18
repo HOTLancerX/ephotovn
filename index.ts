@@ -2,7 +2,8 @@
  * plugin/ephotovn/index.ts — Ephotovn plugin registry.
  */
 
-import { addBuilderElement, type PluginMeta } from "@/hook";
+import { addBuilderElement, addHook, type PluginMeta } from "@/hook";
+import Headervn from "./header/Headervn";
 import heroElement from "./elements/HeRo";
 import sliderElement from "./elements/Slider";
 import sliderTextElement from "./elements/SliderText";
@@ -66,6 +67,17 @@ export function register() {
     addBuilderElement(partnerBannerElement, PLUGINS.nx);
     addBuilderElement(simplifyWorkflowElement, PLUGINS.nx);
     addBuilderElement(beforeAfterTabElement, PLUGINS.nx);
+    addHook("root.pages", [
+        {
+            key: "header",
+            label: "Headervn",
+            type: "header",
+            slug: "layout",
+            style: "left",
+            position: 40,
+            component: Headervn,
+        }
+    ], PLUGINS.nx);
 }
 
 

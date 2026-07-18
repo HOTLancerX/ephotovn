@@ -320,8 +320,8 @@ const stepsSectionElement = {
 
     style: {
       columns: 3,
-      gap: 40,
-      headerGap: 40,
+      gap: { desktop: 40, tablet: 40, mobile: 40 },
+      headerGap: { desktop: 40, tablet: 40, mobile: 40 },
       headerAlign: "center",
       cardAlign: "center",
 

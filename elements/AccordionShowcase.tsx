@@ -509,7 +509,7 @@ const accordionShowcaseElement = {
 
     style: {
       imagePosition: "left",
-      gap: 48,
+      gap: { desktop: 48, tablet: 48, mobile: 48 },
       contentGap: 20,
 
       // Subtitle

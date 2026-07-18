@@ -71,8 +71,8 @@ function PartnerBannerFrontend({ element }: { element: any }) {
   const listTextTyp = getTypographyStyles(s.style?.listTextTypography || {});
 
   return (
-    <div className="w-full py-16 px-6 bg-transparent select-none">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div className="w-full bg-transparent select-none">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left Column - Info & Action Button */}
         <div className="lg:col-span-5 space-y-6 flex flex-col items-start">

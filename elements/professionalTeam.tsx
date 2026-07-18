@@ -169,7 +169,7 @@ function ProfessionalTeamFrontend({ element }: { element: any }) {
 const professionalTeamElement = {
   type: "professional-team",
   category: "ephotovn",
-  label: "Professional Team Showcase",
+  label: "Professional Team",
   icon: "solar:users-group-two-rounded-bold-duotone",
 
   schema: {

@@ -237,7 +237,7 @@ const heroElement = {
   type: "hero",
   category: "ephotovn",
   label: "Hero Section",
-  icon: "solar:home-bold-duotone",
+  icon: "/plugin/ephotovn/icon/hero.png",
 
   schema: {
     content: {
@@ -251,7 +251,7 @@ const heroElement = {
     },
 
     style: {
-      gap: 24,
+      gap: { desktop: 24, tablet: 24, mobile: 24 },
       containerAlignment: "center",
       pillAlignment: "center",
       titleAlignment: "center",

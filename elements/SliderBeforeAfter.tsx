@@ -547,7 +547,7 @@ const sliderBeforeAfterElement = {
   type: "slider-before-after-ep",
   category: "ephotovn",
   label: "Before/After Services Grid",
-  icon: "solar:slider-minimalistic-horizontal-bold-duotone",
+  icon: "/plugin/ephotovn/icon/b4a.png",
 
   schema: {
     content: {
@@ -562,8 +562,8 @@ const sliderBeforeAfterElement = {
       colsDesktop: 3,
       colsTablet: 2,
       colsMobile: 1,
-      gap: 32,
-      imageHeight: 220,
+      gap: { desktop: 32, tablet: 32, mobile: 32 },
+      imageHeight: { desktop: 220, tablet: 220, mobile: 220 },
       cardBorderRadius: 12,
 
       infoAlignment: "left",

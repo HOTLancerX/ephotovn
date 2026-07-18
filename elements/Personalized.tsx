@@ -245,8 +245,8 @@ function PersonalizedFrontend({ element }: { element: any }) {
 const personalizedElement = {
   type: "personalized-section",
   category: "ephotovn",
-  label: "Personalized Section",
-  icon: "solar:user-speak-bold-duotone",
+  label: "Personalized",
+  icon: "/plugin/ephotovn/icon/s1.png",
 
   schema: {
     content: {

@@ -335,8 +335,8 @@ const featureCardsElement = {
 
     style: {
       columns: 3,
-      gap: 24,
-      headerGap: 32,
+      gap: { desktop: 24, tablet: 24, mobile: 24 },
+      headerGap: { desktop: 32, tablet: 32, mobile: 32 },
       headerAlign: "left",
 
       // Subtitle
@@ -370,7 +370,7 @@ const featureCardsElement = {
         lineHeightUnit: "px",
       },
 
-      cardGap: 12,
+      cardGap: { desktop: 12, tablet: 12, mobile: 12 },
 
       // Highlight underline
       showHighlight: true,

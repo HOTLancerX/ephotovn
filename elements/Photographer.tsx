@@ -174,6 +174,7 @@ function PhotographerFrontend({ element }: { element: any }) {
   // ── Image styles ──
   const imageBorderRadius: number = s.style?.imageBorderRadius ?? 16;
   const imageObjectFit: string = s.style?.imageObjectFit || "cover";
+  const useDynamicHeight: boolean = s.style?.useDynamicHeight ?? false;
 
   // ── Background ──
   const bgType: "solid" | "gradient" | "transparent" = s.style?.bgType || "transparent";
@@ -264,27 +265,40 @@ function PhotographerFrontend({ element }: { element: any }) {
             position: "relative",
             overflow: "hidden",
             borderRadius: `${imageBorderRadius}px`,
-            aspectRatio: "4 / 5",
+            ...(useDynamicHeight ? {} : { aspectRatio: "4 / 5" }),
           }}
         >
-          <Image
-            src={image}
-            alt={heading || "Feature image"}
-            fill
-            style={{ objectFit: imageObjectFit as any }}
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+          {useDynamicHeight ? (
+            <img
+              src={image}
+              alt={heading || "Feature image"}
+              style={{
+                width: "100%",
+                height: "auto",
+                objectFit: imageObjectFit as any,
+              }}
+            />
+          ) : (
+            <Image
+              src={image}
+              alt={heading || "Feature image"}
+              fill
+              style={{ objectFit: imageObjectFit as any }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          )}
         </div>
       ) : (
         <div
           style={{
             width: "100%",
-            aspectRatio: "4 / 5",
+            ...(useDynamicHeight ? {} : { aspectRatio: "4 / 5" }),
             background: "#e5e7eb",
             borderRadius: `${imageBorderRadius}px`,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            padding: useDynamicHeight ? "40px 0" : 0,
           }}
         >
           <Icon icon="mdi:image-outline" width={64} height={64} style={{ color: "#9ca3af" }} />
@@ -432,7 +446,7 @@ const photographerElement = {
   type: "photographer-section",
   category: "ephotovn",
   label: "Photographer Section",
-  icon: "solar:camera-bold-duotone",
+  icon: "/plugin/ephotovn/icon/el.png",
 
   schema: {
     content: {
@@ -509,6 +523,7 @@ const photographerElement = {
       // Image
       imageBorderRadius: 16,
       imageObjectFit: "cover",
+      useDynamicHeight: false,
 
       // Background
       bgType: "transparent",
@@ -729,6 +744,13 @@ const photographerElement = {
       tab: "Style",
       section: "Image Styling",
       controls: [
+        {
+          name: "useDynamicHeight",
+          responsive: false,
+          render: (value: any, onChange: any) => (
+            <Toggle label="Use Dynamic Height" value={value ?? false} onChange={onChange} />
+          ),
+        },
         {
           name: "imageBorderRadius",
           responsive: false,
